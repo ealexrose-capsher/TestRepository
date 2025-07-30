@@ -1,0 +1,34 @@
+name: CI Integration Tests
+run-name: Running CI Integration Tests ${{ github.run_number }}
+
+env:
+  RESOURCE_GROUP: capsherdev
+  CLUSTER_NAME: aks-dbgorilla-dev
+  NAMESPACE: test
+  HELM_VERSION: 0.1.0
+
+on:
+  workflow_run:
+    workflows: ["CI Build"]
+    types:
+      - completed
+
+jobs:
+  deploy_to_test:
+    name: Deploy To Test
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    - uses: actions/checkout@v4
+    steps:
+      - name: Download commit SHA from CI Build
+        uses: actions/download-artifact@v4
+        with:
+          name: sha
+      - name: Read SHA into environment
+        id: read-sha
+        run: echo "SHA=$(cat commit-sha.txt)" >> $GITHUB_ENV
+      - name: Re-upload commit SHA for downstream workflows
+        uses: actions/upload-artifact@v4
+        with:
+          name: sha
+          path: commit-sha.txt
