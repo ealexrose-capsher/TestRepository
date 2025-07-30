@@ -30,7 +30,6 @@ jobs:
         with:
           github-token: ${{ secrets.GH_PAT }} # token with actions:read permissions on target repo
           name: sha
-          path: sha
           run-id: ${{ github.event.workflow_run.id }}
       - name: Read SHA into environment
         id: read-sha
