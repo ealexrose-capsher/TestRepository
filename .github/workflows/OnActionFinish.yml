@@ -11,8 +11,8 @@ jobs:
   deploy_to_test:
     name: Deploy To Test
     runs-on: ubuntu-latest
-    - uses: actions/checkout@v4
     steps:
+      - uses: actions/checkout@v4
       - name: Download commit SHA from CI Build
         uses: actions/download-artifact@v4
         with:
