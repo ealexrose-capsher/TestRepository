@@ -26,9 +26,9 @@ jobs:
       - name: Echo github SHA
         run: echo "github branch SHA ${{ github.SHA }}"
 
-
       - name: Download commit SHA from Save SHA
         uses: actions/download-artifact@v4
+        github-token: ${{ secrets.GH_PAT }} # token with actions:read permissions on target repo
         with:
           name: sha
       - name: Read SHA into environment

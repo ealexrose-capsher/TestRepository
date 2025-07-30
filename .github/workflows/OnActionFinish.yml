@@ -26,11 +26,13 @@ jobs:
 
       - name: Download commit SHA from Save SHA
         uses: actions/download-artifact@v4
+        github-token: ${{ secrets.GH_PAT }} # token with actions:read permissions on target repo
         with:
           name: sha
+          path: commit-sha
       - name: Read SHA into environment
         id: read-sha
-        run: echo "SHA=$(cat commit-sha.txt)" >> $GITHUB_ENV
+        run: echo "SHA=$(cat commit-sha.txt)" >> $GITHUB_EN
       - name: Re-upload commit SHA for downstream workflows
         uses: actions/upload-artifact@v4
         with:
