@@ -1,6 +1,12 @@
 name: Receive SHA
 run-name: Running Receive SHA attempt ${{ github.run_number }}
 
+env:
+  RESOURCE_GROUP: capsherdev
+  CLUSTER_NAME: aks-dbgorilla-dev
+  NAMESPACE: test
+  HELM_VERSION: 0.1.0
+
 on:
   workflow_run:
     workflows: ["Save SHA"]
