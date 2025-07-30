@@ -38,3 +38,4 @@ jobs:
         with:
           name: sha
           path: sha.txt
+          run-id: ${{ github.event.workflow_run.id }}
