@@ -1,6 +1,5 @@
 name: Receive SHA
 run-name: Running Receive SHA attempt ${{ github.run_number }}
-#minor change
 on:
   workflow_run:
     workflows: ["Save SHA"]
@@ -9,6 +8,8 @@ on:
 
 jobs:
   deploy_to_test:
+    permissions:
+      actions: read 
     name: Deploy To Test
     runs-on: ubuntu-latest
     steps:
@@ -19,3 +20,16 @@ jobs:
         run: echo "workflow_run head SHA ${{ github.event.workflow_run.head_sha }}"
       - name: Echo github SHA
         run: echo "github branch SHA ${{ github.SHA }}"
+
+      - name: Download commit SHA from Save SHA
+        uses: actions/download-artifact@v4
+        with:
+          name: sha
+      - name: Read SHA into environment
+        id: read-sha
+        run: echo "SHA=$(cat commit-sha.txt)" >> $GITHUB_ENV
+      - name: Re-upload commit SHA for downstream workflows
+        uses: actions/upload-artifact@v4
+        with:
+          name: sha
+          path: commit-sha.txt
