@@ -1,6 +1,6 @@
 name: Finish SHA
 run-name: Running Finish SHA attempt ${{ github.run_number }}
-#another change
+#do something
 on:
   workflow_run:
     workflows: ["Receive SHA"]
