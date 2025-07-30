@@ -23,7 +23,8 @@ jobs:
         run: echo "workflow_run head SHA ${{ github.event.workflow_run.head_sha }}"
       - name: Echo github SHA
         run: echo "github branch SHA ${{ github.SHA }}"
-
+      - name: Echo workflow id
+        run: echo "github parent workflow id ${{ github.event.workflow_run.id }}"
       - name: Download commit SHA from Save SHA
         uses: actions/download-artifact@v4
         with:
@@ -38,4 +39,4 @@ jobs:
         with:
           name: sha
           path: sha.txt
-          run-id: ${{ context.payload.workflow_run.id }}
+          run-id: ${{ github.event.workflow_run.id }}
