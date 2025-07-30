@@ -33,7 +33,7 @@ jobs:
           run-id: ${{ github.event.workflow_run.id }}
       - name: Read SHA into environment
         id: read-sha
-        run: echo "SHA=$(cat sha.txt)" >> $GITHUB_EN
+        run: echo "SHA=$(cat sha.txt)" >> $GITHUB_ENV
       - name: Re-upload commit SHA for downstream workflows
         uses: actions/upload-artifact@v4
         with:
