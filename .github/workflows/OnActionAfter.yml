@@ -1,9 +1,9 @@
-name: Receive SHA
-run-name: Running Receive SHA attempt ${{ github.run_number }}
-#minor change
+name: Finish SHA
+run-name: Running Finish SHA attempt ${{ github.run_number }}
+#another change
 on:
   workflow_run:
-    workflows: ["Save SHA"]
+    workflows: ["Receive SHA"]
     types:
       - completed
 
