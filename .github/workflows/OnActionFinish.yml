@@ -1,7 +1,11 @@
 name: Receive SHA
 run-name: Running Receive SHA attempt ${{ github.run_number }}
 
-on: push
+on:
+  workflow_run:
+    workflows: ["Save SHA"]
+    types:
+      - completed
 
 jobs:
   deploy_to_test:
@@ -12,7 +16,7 @@ jobs:
         with:
           ref: ${{ github.event.workflow_run.head_sha }}
       - name: Echo workflow_run head SHA
-        run: echo "workflow_run head SHA: ${{ github.event.workflow_run.head_sha }}"
+        run: echo "workflow_run head SHA ${{ github.event.workflow_run.head_sha }}"
       - name: Download commit SHA from Save SHA
         uses: actions/download-artifact@v4
         with:
