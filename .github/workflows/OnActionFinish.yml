@@ -1,9 +1,9 @@
-name: CI Integration Tests
-run-name: Running CI Integration Tests ${{ github.run_number }}
+name: Receive SHA
+run-name: Running Receive SHA attempt ${{ github.run_number }}
 
 on:
   workflow_run:
-    workflows: ["CI Build"]
+    workflows: ["Save SHA"]
     types:
       - completed
 
@@ -13,7 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Download commit SHA from CI Build
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+      - name: Echo workflow_run head SHA
+        run: echo "workflow_run head SHA: ${{ github.event.workflow_run.head_sha }}"
+      - name: Download commit SHA from Save SHA
         uses: actions/download-artifact@v4
         with:
           name: sha

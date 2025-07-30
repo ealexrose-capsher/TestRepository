@@ -1,5 +1,5 @@
-name: CI Build
-run-name: Running CI Build ${{ github.run_number }}
+name: Save SHA
+run-name: Save SHA Attempt ${{ github.run_number }}
 
 on: push
 
