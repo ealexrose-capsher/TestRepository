@@ -26,8 +26,8 @@ jobs:
 
       - name: Download commit SHA from Save SHA
         uses: actions/download-artifact@v4
-        github-token: ${{ secrets.GH_PAT }} # token with actions:read permissions on target repo
         with:
+          github-token: ${{ secrets.GH_PAT }} # token with actions:read permissions on target repo
           name: sha
           path: commit-sha
       - name: Read SHA into environment
