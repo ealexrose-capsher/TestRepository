@@ -27,14 +27,14 @@ jobs:
         run: echo "github branch SHA ${{ github.SHA }}"
 
       - name: Download commit SHA from Save SHA
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
         with:
           github-token: ${{ secrets.GH_PAT }} # token with actions:read permissions on target repo
           name: sha
       - name: Read SHA into environment
         run: echo "SHA=$(cat sha.txt)" >> $GITHUB_ENV
       - name: Re-upload commit SHA for downstream workflows
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: sha
           path: sha.txt
