@@ -1,0 +1,18 @@
+name: Build and Upload Artifact
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build project
+        run: |
+          mkdir -p build_output
+          echo "This is a build artifact." > build_output/my_artifact.txt
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-build-artifact
+          path: build_output/
