@@ -1,11 +1,7 @@
 name: Receive SHA
 run-name: Running Receive SHA attempt ${{ github.run_number }}
 
-on:
-  workflow_run:
-    workflows: ["Save SHA"]
-    types:
-      - completed
+on: push
 
 jobs:
   deploy_to_test:
