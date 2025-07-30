@@ -1,0 +1,20 @@
+name: CI Build
+run-name: Running CI Build ${{ github.run_number }}
+
+on: push
+
+jobs:
+  save_sha:
+    name: Build Helm
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: false # Disable submodules to avoid the dbgorilla_mcp issue
+      - name: Save commit SHA
+        run: echo "${{ github.sha }}" > commit-sha.txt
+      - name: Upload commit SHA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sha
+          path: commit-sha.txt
