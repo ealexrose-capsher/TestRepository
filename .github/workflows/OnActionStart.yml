@@ -16,9 +16,9 @@ jobs:
       - name: Echo github SHA
         run: echo "github branch SHA ${{ github.SHA }}"
       - name: Save commit SHA
-        run: echo "${{ github.sha }}" > commit-sha.txt
+        run: echo "${{ github.sha }}" > sha.txt
       - name: Upload commit SHA artifact
         uses: actions/upload-artifact@v4
         with:
           name: sha
-          path: commit-sha.txt
+          path: sha.txt

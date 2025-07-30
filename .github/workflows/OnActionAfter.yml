@@ -32,10 +32,9 @@ jobs:
           github-token: ${{ secrets.GH_PAT }} # token with actions:read permissions on target repo
           name: sha
       - name: Read SHA into environment
-        id: read-sha
-        run: echo "SHA=$(cat commit-sha.txt)" >> $GITHUB_ENV
+        run: echo "SHA=$(cat sha.txt)" >> $GITHUB_ENV
       - name: Re-upload commit SHA for downstream workflows
         uses: actions/upload-artifact@v4
         with:
           name: sha
-          path: commit-sha.txt
+          path: sha.txt
