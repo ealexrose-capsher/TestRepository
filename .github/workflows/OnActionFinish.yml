@@ -1,5 +1,10 @@
 name: Receive SHA
 run-name: Running Receive SHA attempt ${{ github.run_number }}
+
+permissions:
+  actions: read
+  contents: read
+
 on:
   workflow_run:
     workflows: ["Save SHA"]
@@ -8,8 +13,6 @@ on:
 
 jobs:
   deploy_to_test:
-    permissions:
-      actions: read 
     name: Deploy To Test
     runs-on: ubuntu-latest
     steps:

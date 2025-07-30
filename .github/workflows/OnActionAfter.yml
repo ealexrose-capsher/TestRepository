@@ -1,6 +1,10 @@
 name: Finish SHA
 run-name: Running Finish SHA attempt ${{ github.run_number }}
-#do something
+
+permissions:
+  actions: read
+  contents: read
+
 on:
   workflow_run:
     workflows: ["Receive SHA"]
