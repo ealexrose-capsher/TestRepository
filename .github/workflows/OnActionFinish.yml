@@ -34,7 +34,6 @@ jobs:
           name: sha
           run-id: ${{ github.event.workflow_run.id }}
       - name: Read SHA into environment
-        id: read-sha
         run: echo "SHA=$(cat sha.txt)" >> $GITHUB_ENV
       - name: Read SHA into output
         id: read-sha
