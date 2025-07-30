@@ -11,6 +11,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: false # Disable submodules to avoid the dbgorilla_mcp issue
+      - name: Echo workflow_run head SHA
+        run: echo "workflow_run head SHA ${{ github.event.workflow_run.head_sha }}"
+      - name: Echo github SHA
+        run: echo "github branch SHA ${{ github.SHA }}"
       - name: Save commit SHA
         run: echo "${{ github.sha }}" > commit-sha.txt
       - name: Upload commit SHA artifact
