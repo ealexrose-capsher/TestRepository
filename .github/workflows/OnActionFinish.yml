@@ -1,6 +1,6 @@
 name: Receive SHA
 run-name: Running Receive SHA attempt ${{ github.run_number }}
-
+#minor change
 on:
   workflow_run:
     workflows: ["Save SHA"]
