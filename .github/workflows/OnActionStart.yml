@@ -1,6 +1,6 @@
 name: Save SHA
 run-name: Save SHA Attempt ${{ github.run_number }}
-
+#try without write access
 on: push
 
 jobs:
